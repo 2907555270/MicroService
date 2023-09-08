@@ -1,0 +1,14 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: customer
+eureka:
+  instance:
+    hostname: hostname
+    instance-id: ${spring.application.name}-${server.port}
+  client:
+    service-url:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+    fetch-registry: true
+    register-with-eureka: true

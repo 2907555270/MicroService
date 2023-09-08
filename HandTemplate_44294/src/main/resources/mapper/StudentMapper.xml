@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hand.demo.template_44294.infra.mapper.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.hand.demo.template_44294.domain.entity.Student">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name
+    </sql>
+
+    <insert id="insertBatch" useGeneratedKeys="true">
+        insert into student(name)
+        values
+        <foreach collection="studentList" separator="," item="student">
+            (#{student.name})
+        </foreach>
+    </insert>
+
+    <update id="updateById" parameterType="com.hand.demo.template_44294.domain.entity.Student">
+        update student
+        <set>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="removeById">
+        delete
+        from
+            student
+        where
+            id = #{id}
+    </delete>
+
+    <select id="selectAll" resultType="com.hand.demo.template_44294.domain.entity.Student">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            student
+    </select>
+
+    <resultMap id="stuWithCourseAndScore" type="com.hand.demo.template_44294.domain.vo.StudentVo">
+        <result property="studentId" column="student_id" javaType="long" jdbcType="BIGINT"/>
+        <result property="studentName" column="student_name" javaType="string" jdbcType="VARCHAR"/>
+        <collection property="courseVos" ofType="com.hand.demo.template_44294.domain.vo.CourseVo">
+            <result property="courseId" column="course_id" javaType="long" jdbcType="BIGINT"/>
+            <result property="courseName" column="course_name" javaType="string" jdbcType="VARCHAR"/>
+            <result property="teacherId" column="teacher_id" javaType="long" jdbcType="BIGINT"/>
+            <result property="teacherName" column="teacher_name" javaType="string" jdbcType="VARCHAR"/>
+            <result property="score" column="score" javaType="bigDecimal" jdbcType="DECIMAL"/>
+        </collection>
+    </resultMap>
+    <select id="selectStuWithCourseAndScore" resultMap="stuWithCourseAndScore">
+        select sc.student_id,
+               s.name as 'student_name',
+               sc.course_id,
+               c.name as 'course_name',
+               g.score,
+               t.id   as 'teacher_id',
+               t.name as 'teacher_name'
+        from student_course sc
+        left join
+            student s
+            on
+            sc.student_id = s.id
+        left join
+            course c
+            on
+            sc.course_id = c.id
+        left join
+            grade g
+            on
+            g.course_id = sc.course_id
+            and
+            g.student_id = sc.student_id
+        left join
+            teacher t
+            on
+            t.id = c.teacher_id;
+    </select>
+</mapper>

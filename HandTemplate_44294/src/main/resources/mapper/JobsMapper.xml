@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hand.demo.template_44294.infra.mapper.JobsMapper">
+
+    <resultMap id="BaseResultMap" type="com.hand.demo.template_44294.domain.entity.Jobs">
+        <id property="jobId" column="JOB_ID" jdbcType="VARCHAR"/>
+        <result property="jobTitle" column="JOB_TITLE" jdbcType="VARCHAR"/>
+        <result property="minSalary" column="MIN_SALARY" jdbcType="DECIMAL"/>
+        <result property="maxSalary" column="MAX_SALARY" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        JOB_ID
+        ,JOB_TITLE,MIN_SALARY,
+        MAX_SALARY
+    </sql>
+
+    <select id="selectAllJobs" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from jobs
+    </select>
+
+    <select id="selectJobsByConditions" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from jobs
+        <where>
+            <if test="jobId!=null and jobId!=''">
+                and JOB_ID = #{jobId}
+            </if>
+            <if test="jobTitle!=null and jobTitle!=''">
+                and JOB_TITLE LIKE CONCAT(#{jobTitle},'%')
+            </if>
+            <if test="minSalary!=null">
+                and MIN_SALARY >= #{minSalary}
+            </if>
+            <if test="maxSalary!=null">
+                and MAX_SALARY &lt;= #{maxSalary}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertBatchJobs" parameterType="list">
+        insert into
+            jobs(JOB_ID,JOB_TITLE,MIN_SALARY,MAX_SALARY)
+        values
+        <foreach collection="jobsList" item="jobs" separator=",">
+            (#{jobs.jobId},#{jobs.jobTitle},#{jobs.minSalary},#{jobs.maxSalary})
+        </foreach>
+    </insert>
+
+
+</mapper>

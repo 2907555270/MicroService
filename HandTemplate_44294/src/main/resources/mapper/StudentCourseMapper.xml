@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hand.demo.template_44294.infra.mapper.StudentCourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.hand.demo.template_44294.domain.entity.StudentCourse">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="studentId" column="student_id" jdbcType="BIGINT"/>
+        <result property="courseId" column="course_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,student_id,course_id
+    </sql>
+
+    <insert id="insertBatch" useGeneratedKeys="true">
+        insert into
+        student_course(student_id, course_id)
+        values
+        <foreach collection="studentCourseList" separator="," item="studentCourse">
+            (#{studentCourse.studentId},#{studentCourse.courseId})
+        </foreach>
+    </insert>
+
+    <update id="updateById" parameterType="com.hand.demo.template_44294.domain.entity.StudentCourse">
+        update student_course
+        <set>
+            <trim suffixOverrides=",">
+                <if test="studentId!=null">
+                    student_Id = #{studentId},
+                </if>
+                <if test="teacherId!=null">
+                    teacher_id = #{courseId}
+                </if>
+            </trim>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="removeById">
+        delete from
+            student_course
+        where
+            id=#{id}
+    </delete>
+
+    <select id="selectAll" resultType="com.hand.demo.template_44294.domain.entity.StudentCourse">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            student_course
+    </select>
+</mapper>

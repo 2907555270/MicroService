@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+  description  
+  @author EMP 2023/09/08 21:11 
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Page</title>
+</head>
+<body>
+<!-- 间距拉开 -->
+<div style="margin-top: 40px"></div>
+
+<!-- 搜索表单 -->
+<div id="searchForm1" th:if="${searchCondition!=null}">
+    <form action="http://localhost:8082/model/job/list" method="post">
+        jobId : <input name="jobId" type="text" th:value="${searchCondition.jobId}"/>
+        jobTitle : <input name="jobTitle" type="text" th:value="${searchCondition.jobTitle}"/>
+        minSalary : <input name="minSalary" type="text" th:value="${searchCondition.minSalary}"/>
+        maxSalary : <input name="maxSalary" type="text" th:value="${searchCondition.maxSalary}"/>
+        <input type="submit" value="search">
+        <button onclick="reset()">reset</button>
+    </form>
+</div>
+<div id="searchForm2" th:if="${searchCondition==null}">
+    <form action="http://localhost:8082/model/job/list" method="post">
+        jobId : <input name="jobId" type="text"/>
+        jobTitle : <input name="jobTitle" type="text"/>
+        minSalary : <input name="minSalary" type="text"/>
+        maxSalary : <input name="maxSalary" type="text"/>
+        <input type="submit" value="search">
+    </form>
+</div>
+
+<!-- 间距拉开 -->
+<div style="margin-top: 40px"></div>
+
+<!-- 显示表格 -->
+<table style="width: 100%;border: 2px solid;text-align: center">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>MinSalary</th>
+        <th>MaxSalary</th>
+    </tr>
+    <tr th:each="job:${jobList}">
+        <td th:text="${job.getJobId()}"></td>
+        <td th:text="${job.getJobTitle()}"></td>
+        <td th:text="${job.getMinSalary()}"></td>
+        <td th:text="${job.getMaxSalary()}"></td>
+    </tr>
+</table>
+</body>
+<style>
+    tr {
+        border: 2px solid;
+        background-color: beige;
+    }
+
+    td {
+        border: 2px solid;
+    }
+
+    th {
+        font-size: large;
+        color: black;
+        font-weight: bolder;
+    }
+</style>
+</html>

@@ -1,0 +1,7 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.56.202:3306/hand_work
+    username: root
+    password: root
