@@ -2,7 +2,6 @@ package com.hand.demo.template_44294.app.service;
 
 import com.hand.demo.template_44294.domain.entity.Teacher;
 import com.hand.demo.template_44294.domain.vo.TeacherVo;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +21,6 @@ public class TeacherServiceTest {
     private TeacherService teacherService;
 
     @Test
-    @Ignore
     void testInsertMany() {
         int n = 10;
         ArrayList<Teacher> teachers = new ArrayList<>(n);
@@ -38,7 +36,6 @@ public class TeacherServiceTest {
     }
 
     @Test
-    @Ignore
     void testUpdateById() {
         Teacher teacher = new Teacher();
         teacher.setId(2L);
@@ -47,7 +44,6 @@ public class TeacherServiceTest {
     }
 
     @Test
-    @Ignore
     void testRemoveById() {
         teacherService.removeById(2L);
     }
