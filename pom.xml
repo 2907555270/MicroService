@@ -16,12 +16,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka-7001</module>
-        <module>eureka-7002</module>
-        <module>eureka-7003</module>
         <module>HandTemplate_44294</module>
         <module>customer</module>
         <module>producer</module>
+        <module>eureka-server</module>
+        <module>shop-service</module>
     </modules>
 
     <properties>
@@ -46,19 +45,45 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-
+         <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-commons</artifactId>
+         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
+       <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-logging</artifactId>
+       </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>logback-core</groupId>
+                    <artifactId>ch.qos.logback</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>logback-classic</groupId>
+                    <artifactId>ch.qos.logback</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j-over-slf4j</groupId>
+                    <artifactId>org.slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
         <dependency>

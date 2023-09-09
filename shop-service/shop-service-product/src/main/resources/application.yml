@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: shop-service-product
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.202:3306/hm_shop
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
+
+server:
+  port: 10010
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+
+# 配置负载均衡策略
+shop-service-product:
+  ribbon:
+    NFLoadBalancerClassName: com.

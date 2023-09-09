@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Job Page</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
 <!-- 间距拉开 -->
@@ -14,22 +15,22 @@
 
 <!-- 搜索表单 -->
 <div id="searchForm1" th:if="${searchCondition!=null}">
-    <form action="http://localhost:8082/model/job/list" method="post">
-        jobId : <input name="jobId" type="text" th:value="${searchCondition.jobId}"/>
-        jobTitle : <input name="jobTitle" type="text" th:value="${searchCondition.jobTitle}"/>
-        minSalary : <input name="minSalary" type="text" th:value="${searchCondition.minSalary}"/>
-        maxSalary : <input name="maxSalary" type="text" th:value="${searchCondition.maxSalary}"/>
-        <input type="submit" value="search">
-        <button onclick="reset()">reset</button>
+    <form id="myForm1" action="http://localhost:8082/model/job/list" method="post">
+        <!-- jobId : <input name="jobId" type="text" th:value="${searchCondition.jobId}"/> -->
+        jobId : <input id="jobId1" name="jobId" type="text" th:value="${searchCondition.jobId}"/>
+        jobTitle : <input id="jobTitle1" name="jobTitle" type="text" th:value="${searchCondition.jobTitle}"/>
+        minSalary : <input id="minSalary1" name="minSalary" type="text" th:value="${searchCondition.minSalary}"/>
+        maxSalary : <input id="maxSalary1" name="maxSalary" type="text" th:value="${searchCondition.maxSalary}"/>
+        <input id="submit1" type="submit" value="search">
     </form>
 </div>
 <div id="searchForm2" th:if="${searchCondition==null}">
-    <form action="http://localhost:8082/model/job/list" method="post">
+    <form id="myForm2" action="http://localhost:8082/model/job/list" method="post">
         jobId : <input name="jobId" type="text"/>
         jobTitle : <input name="jobTitle" type="text"/>
         minSalary : <input name="minSalary" type="text"/>
         maxSalary : <input name="maxSalary" type="text"/>
-        <input type="submit" value="search">
+        <input id="submit2" type="submit" value="search">
     </form>
 </div>
 
