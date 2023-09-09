@@ -96,7 +96,7 @@ CREATE TABLE `departments` (
   KEY `DEPT_MGR_FK` (`MANAGER_ID`) USING BTREE,
   CONSTRAINT `DEPT_LOC_FK` FOREIGN KEY (`LOCATION_ID`) REFERENCES `locations` (`LOCATION_ID`),
   CONSTRAINT `DEPT_MGR_FK` FOREIGN KEY (`MANAGER_ID`) REFERENCES `employees` (`EMPLOYEE_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Departments table that shows details of departments where employees\nwork. Contains 27 rows; references with locations, employees, and job_history tables.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Department table that shows details of departments where employees\nwork. Contains 27 rows; references with locations, employees, and job_history tables.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `employees` (
   KEY `EMP_MANAGER_IX` (`MANAGER_ID`) USING BTREE,
   KEY `EMP_NAME_IX` (`LAST_NAME`,`FIRST_NAME`) USING BTREE,
   CONSTRAINT `EMP_DEPT_FK` FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `departments` (`DEPARTMENT_ID`),
-  CONSTRAINT `EMP_JOB_FK` FOREIGN KEY (`JOB_ID`) REFERENCES `jobs` (`JOB_ID`),
+  CONSTRAINT `EMP_JOB_FK` FOREIGN KEY (`JOB_ID`) REFERENCES `job` (`JOB_ID`),
   CONSTRAINT `EMP_MANAGER_FK` FOREIGN KEY (`MANAGER_ID`) REFERENCES `employees` (`EMPLOYEE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='employees table. Contains 107 rows. References with departments,\njobs, job_history tables. Contains a self reference.';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -269,7 +269,7 @@ CREATE TABLE `job_history` (
   `EMPLOYEE_ID` decimal(6,0) NOT NULL COMMENT 'A not null column in the complex primary key employee_id+start_date.\nForeign key to employee_id column of the employee table',
   `START_DATE` datetime NOT NULL COMMENT 'A not null column in the complex primary key employee_id+start_date.\nMust be less than the end_date of the job_history table. (enforced by\nconstraint jhist_date_interval)',
   `END_DATE` datetime NOT NULL COMMENT 'Last day of the employee in this job role. A not null column. Must be\ngreater than the start_date of the job_history table.\n(enforced by constraint jhist_date_interval)',
-  `JOB_ID` varchar(10) NOT NULL COMMENT 'Job role in which the employee worked in the past; foreign key to\njob_id column in the jobs table. A not null column.',
+  `JOB_ID` varchar(10) NOT NULL COMMENT 'Job role in which the employee worked in the past; foreign key to\njob_id column in the job table. A not null column.',
   `DEPARTMENT_ID` decimal(4,0) DEFAULT NULL COMMENT 'Department id in which the employee worked in the past; foreign key to deparment_id column in the departments table',
   PRIMARY KEY (`EMPLOYEE_ID`,`START_DATE`) USING BTREE,
   KEY `JHIST_DEPARTMENT_IX` (`DEPARTMENT_ID`) USING BTREE,
@@ -277,8 +277,8 @@ CREATE TABLE `job_history` (
   KEY `JHIST_JOB_IX` (`JOB_ID`) USING BTREE,
   CONSTRAINT `JHIST_DEPT_FK` FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `departments` (`DEPARTMENT_ID`),
   CONSTRAINT `JHIST_EMP_FK` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `employees` (`EMPLOYEE_ID`),
-  CONSTRAINT `JHIST_JOB_FK` FOREIGN KEY (`JOB_ID`) REFERENCES `jobs` (`JOB_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Table that stores job history of the employees. If an employee\nchanges departments within the job or changes jobs within the department,\nnew rows get inserted into this table with old job information of the\nemployee. Contains a complex primary key: employee_id+start_date.\nContains 25 rows. References with jobs, employees, and departments tables.';
+  CONSTRAINT `JHIST_JOB_FK` FOREIGN KEY (`JOB_ID`) REFERENCES `job` (`JOB_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Table that stores job history of the employees. If an employee\nchanges departments within the job or changes job within the department,\nnew rows get inserted into this table with old job information of the\nemployee. Contains a complex primary key: employee_id+start_date.\nContains 25 rows. References with job, employees, and departments tables.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,29 +292,29 @@ INSERT INTO `job_history` VALUES (101,'1997-09-21 00:00:00','2001-10-27 00:00:00
 UNLOCK TABLES;
 
 --
--- Table structure for table `jobs`
+-- Table structure for table `job`
 --
 
-DROP TABLE IF EXISTS `jobs`;
+DROP TABLE IF EXISTS `job`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `jobs` (
-  `JOB_ID` varchar(10) NOT NULL COMMENT 'Primary key of jobs table.',
+CREATE TABLE `job` (
+  `JOB_ID` varchar(10) NOT NULL COMMENT 'Primary key of job table.',
   `JOB_TITLE` varchar(35) NOT NULL COMMENT 'A not null column that shows job title, e.g. AD_VP, FI_ACCOUNTANT',
   `MIN_SALARY` decimal(6,0) DEFAULT NULL COMMENT 'Minimum salary for a job title.',
   `MAX_SALARY` decimal(6,0) DEFAULT NULL COMMENT 'Maximum salary for a job title',
   PRIMARY KEY (`JOB_ID`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='jobs table with job titles and salary ranges. Contains 19 rows.\nReferences with employees and job_history table.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='job table with job titles and salary ranges. Contains 19 rows.\nReferences with employees and job_history table.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `jobs`
+-- Dumping data for table `job`
 --
 
-LOCK TABLES `jobs` WRITE;
-/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
-INSERT INTO `jobs` VALUES ('AC_ACCOUNT','Public Accountant',4200,9000),('AC_MGR','Accounting Manager',8200,16000),('AD_ASST','Administration Assistant',3000,6000),('AD_PRES','President',20080,40000),('AD_VP','Administration Vice President',15000,30000),('FI_ACCOUNT','Accountant',4200,9000),('FI_MGR','Finance Manager',8200,16000),('HR_REP','Human Resources Representative',4000,9000),('IT_PROG','Programmer',4000,10000),('MK_MAN','Marketing Manager',9000,15000),('MK_REP','Marketing Representative',4000,9000),('PR_REP','Public Relations Representative',4500,10500),('PU_CLERK','Purchasing Clerk',2500,5500),('PU_MAN','Purchasing Manager',8000,15000),('SA_MAN','Sales Manager',10000,20080),('SA_REP','Sales Representative',6000,12008),('SH_CLERK','Shipping Clerk',2500,5500),('ST_CLERK','Stock Clerk',2008,5000),('ST_MAN','Stock Manager',5500,8500),('TEST_0','TEST_0',10000,10),('TEST_1','TEST_1',10000,10),('TEST_2','TEST_2',10000,10),('TEST_3','TEST_3',10000,10),('TEST_4','TEST_4',10000,10),('TEST_5','TEST_5',10000,10),('TEST_6','TEST_6',10000,10),('TEST_7','TEST_7',10000,10),('TEST_8','TEST_8',10000,10),('TEST_9','TEST_9',10000,10);
-/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+LOCK TABLES `job` WRITE;
+/*!40000 ALTER TABLE `job` DISABLE KEYS */;
+INSERT INTO `job` VALUES ('AC_ACCOUNT','Public Accountant',4200,9000),('AC_MGR','Accounting Manager',8200,16000),('AD_ASST','Administration Assistant',3000,6000),('AD_PRES','President',20080,40000),('AD_VP','Administration Vice President',15000,30000),('FI_ACCOUNT','Accountant',4200,9000),('FI_MGR','Finance Manager',8200,16000),('HR_REP','Human Resources Representative',4000,9000),('IT_PROG','Programmer',4000,10000),('MK_MAN','Marketing Manager',9000,15000),('MK_REP','Marketing Representative',4000,9000),('PR_REP','Public Relations Representative',4500,10500),('PU_CLERK','Purchasing Clerk',2500,5500),('PU_MAN','Purchasing Manager',8000,15000),('SA_MAN','Sales Manager',10000,20080),('SA_REP','Sales Representative',6000,12008),('SH_CLERK','Shipping Clerk',2500,5500),('ST_CLERK','Stock Clerk',2008,5000),('ST_MAN','Stock Manager',5500,8500),('TEST_0','TEST_0',10000,10),('TEST_1','TEST_1',10000,10),('TEST_2','TEST_2',10000,10),('TEST_3','TEST_3',10000,10),('TEST_4','TEST_4',10000,10),('TEST_5','TEST_5',10000,10),('TEST_6','TEST_6',10000,10),('TEST_7','TEST_7',10000,10),('TEST_8','TEST_8',10000,10),('TEST_9','TEST_9',10000,10);
+/*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

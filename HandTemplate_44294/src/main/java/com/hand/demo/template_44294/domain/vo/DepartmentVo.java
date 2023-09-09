@@ -1,8 +1,7 @@
 package com.hand.demo.template_44294.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.hand.demo.template_44294.domain.entity.Employees;
-import lombok.Data;
+import com.hand.demo.template_44294.domain.entity.Employee;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
  *
  * @author EMP_44294 2023/09/07 19:08
  */
-@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DepartmentVo implements Serializable {
     /**
@@ -28,5 +26,38 @@ public class DepartmentVo implements Serializable {
     /**
      * 员工集合
      */
-    private List<Employees> employeesList;
+    private List<Employee> employeeList;
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
+    @Override
+    public String toString() {
+        return "DepartmentVo{" +
+                "departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
+                ", employeeList=" + employeeList +
+                '}';
+    }
 }

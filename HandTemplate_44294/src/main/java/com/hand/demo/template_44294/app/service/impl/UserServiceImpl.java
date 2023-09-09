@@ -1,8 +1,8 @@
 package com.hand.demo.template_44294.app.service.impl;
 
-import com.hand.demo.template_44294.domain.exception.CustomerException;
-import com.hand.demo.template_44294.app.service.UserService;
 import com.hand.demo.template_44294.api.controller.v1.dto.UserDto;
+import com.hand.demo.template_44294.app.service.UserService;
+import com.hand.demo.template_44294.domain.exception.CustomerException;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

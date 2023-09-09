@@ -1,7 +1,7 @@
 package com.hand.demo.template_44294.api.controller.v1.modelAndView;
 
-import com.hand.demo.template_44294.app.service.JobsService;
-import com.hand.demo.template_44294.domain.entity.Jobs;
+import com.hand.demo.template_44294.app.service.JobService;
+import com.hand.demo.template_44294.domain.entity.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ import java.util.List;
 public class MJobController {
 
     @Autowired
-    private JobsService jobsService;
+    private JobService jobService;
 
     /**
      * 获取所有的工作信息
@@ -30,7 +30,7 @@ public class MJobController {
      */
     @GetMapping("/list")
     public ModelAndView listAllJobs() {
-        List<Jobs> jobs = jobsService.queryAllJobs();
+        List<Job> jobs = jobService.queryAllJobs();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("jobList", jobs);
         modelAndView.setViewName("jobs");
@@ -40,15 +40,15 @@ public class MJobController {
     /**
      * 按条件查询工作信息
      *
-     * @param jobs 查询条件
+     * @param job 查询条件
      * @return 符合条件的工作信息
      */
     @PostMapping("/list")
-    public ModelAndView listJobsByCondition(Jobs jobs) {
-        List<Jobs> list = jobsService.queryJobsByConditions(jobs);
+    public ModelAndView listJobsByCondition(Job job) {
+        List<Job> list = jobService.queryJobsByConditions(job);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("jobList", list);
-        modelAndView.addObject("searchCondition", jobs);
+        modelAndView.addObject("searchCondition", job);
         modelAndView.setViewName("jobs");
         return modelAndView;
     }

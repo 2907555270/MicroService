@@ -1,10 +1,8 @@
 package com.hand.demo.template_44294.app.service.impl;
 
 import com.hand.demo.template_44294.app.service.StudentService;
-import com.hand.demo.template_44294.domain.entity.Grade;
 import com.hand.demo.template_44294.domain.entity.Student;
 import com.hand.demo.template_44294.domain.vo.StudentVo;
-import com.hand.demo.template_44294.domain.vo.TeacherVo;
 import com.hand.demo.template_44294.infra.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

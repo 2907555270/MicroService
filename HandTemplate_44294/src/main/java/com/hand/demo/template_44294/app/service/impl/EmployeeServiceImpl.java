@@ -1,6 +1,6 @@
 package com.hand.demo.template_44294.app.service.impl;
 
-import com.hand.demo.template_44294.app.service.EmployeesService;
+import com.hand.demo.template_44294.app.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
  * @author EMP_44294 2023/09/07 11:26
  */
 @Service
-public class EmployeesServiceImpl implements EmployeesService {
+public class EmployeeServiceImpl implements EmployeeService {
 
 }

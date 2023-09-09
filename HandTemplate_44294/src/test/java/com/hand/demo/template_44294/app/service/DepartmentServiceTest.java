@@ -1,12 +1,9 @@
 package com.hand.demo.template_44294.app.service;
 
 import com.hand.demo.template_44294.domain.vo.DepartmentVo;
-import lombok.Data;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 /**
  * description
@@ -17,11 +14,11 @@ import java.util.List;
 public class DepartmentServiceTest {
 
     @Autowired
-    private DepartmentsService departmentsService;
+    private DepartmentService departmentService;
 
     @Test
     void testSelectDepWithEmpByDid(){
-        DepartmentVo departmentVo = departmentsService.queryDepartmentWithEmpByDip(30);
+        DepartmentVo departmentVo = departmentService.queryDepartmentWithEmpByDip(30);
         System.out.println(departmentVo);
     }
 }

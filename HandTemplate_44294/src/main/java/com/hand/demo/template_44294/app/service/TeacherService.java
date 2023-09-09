@@ -1,6 +1,5 @@
 package com.hand.demo.template_44294.app.service;
 
-import com.hand.demo.template_44294.domain.entity.Course;
 import com.hand.demo.template_44294.domain.entity.Teacher;
 import com.hand.demo.template_44294.domain.vo.TeacherVo;
 

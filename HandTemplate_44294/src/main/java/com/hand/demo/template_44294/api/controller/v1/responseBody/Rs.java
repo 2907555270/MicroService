@@ -1,6 +1,5 @@
 package com.hand.demo.template_44294.api.controller.v1.responseBody;
 
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -8,12 +7,43 @@ import org.springframework.http.HttpStatus;
  *
  * @author EMP_44294 2023/09/07 11:28
  */
-@Data
 public class Rs {
     private Integer code;
     private Boolean flag;
     private String msg;
     private Object data;
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public Boolean getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
 
     /**
      * 成功的响应

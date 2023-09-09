@@ -1,9 +1,7 @@
 package com.hand.demo.template_44294.app.service;
 
-import com.hand.demo.template_44294.domain.entity.Grade;
 import com.hand.demo.template_44294.domain.entity.Student;
 import com.hand.demo.template_44294.domain.vo.StudentVo;
-import com.hand.demo.template_44294.domain.vo.TeacherVo;
 
 import java.util.List;
 

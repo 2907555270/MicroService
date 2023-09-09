@@ -1,12 +1,14 @@
-package com.hand.demo.template_44294.infra.mapper;
+package com.hand.demo.template_44294.app.service;
 
 
 import com.hand.demo.template_44294.domain.vo.DepartmentVo;
 
-import java.util.List;
-
-public interface DepartmentsMapper {
-
+/**
+ * description
+ *
+ * @author EMP_44294 2023/09/07 11:26
+ */
+public interface DepartmentService {
     /**
      * 查询指定部门的所有员工信息
      *

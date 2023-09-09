@@ -1,7 +1,7 @@
 package com.hand.demo.template_44294.api.controller.v1.responseBody;
 
-import com.hand.demo.template_44294.app.service.JobsService;
-import com.hand.demo.template_44294.domain.entity.Jobs;
+import com.hand.demo.template_44294.app.service.JobService;
+import com.hand.demo.template_44294.domain.entity.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +17,11 @@ import java.util.List;
  * @author EMP_44294 2023/09/07 15:41
  */
 @RestController
-@RequestMapping("/jobs")
-public class JobsController {
+@RequestMapping("/job")
+public class JobController {
 
     @Autowired
-    private JobsService jobsService;
+    private JobService jobService;
 
     /**
      * 获取所有的工作信息
@@ -30,19 +30,31 @@ public class JobsController {
      */
     @GetMapping("/list")
     public Rs listAllJobs() {
-        List<Jobs> jobs = jobsService.queryAllJobs();
+        List<Job> jobs = jobService.queryAllJobs();
         return Rs.success(null, jobs);
+    }
+
+    /**
+     * 查询提示
+     *
+     * @param job 输入查询信息
+     * @return 查询结果
+     */
+    @PostMapping("/tips")
+    public Rs jobIdTip(@RequestBody Job job) {
+        List<Job> jobList = jobService.searchTips(job);
+        return Rs.success(null, jobList);
     }
 
     /**
      * 按条件查询工作信息
      *
-     * @param jobs 查询条件
+     * @param job 查询条件
      * @return 符合条件的工作信息
      */
     @PostMapping("/list")
-    public Rs listJobsByCondition(@RequestBody Jobs jobs) {
-        List<Jobs> list = jobsService.queryJobsByConditions(jobs);
+    public Rs listJobsByCondition(@RequestBody Job job) {
+        List<Job> list = jobService.queryJobsByConditions(job);
         return Rs.success(null, list);
     }
 }

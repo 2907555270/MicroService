@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hand.demo.template_44294.infra.mapper.JobsMapper">
+<mapper namespace="com.hand.demo.template_44294.infra.mapper.JobMapper">
 
-    <resultMap id="BaseResultMap" type="com.hand.demo.template_44294.domain.entity.Jobs">
+    <resultMap id="BaseResultMap" type="com.hand.demo.template_44294.domain.entity.Job">
         <id property="jobId" column="JOB_ID" jdbcType="VARCHAR"/>
         <result property="jobTitle" column="JOB_TITLE" jdbcType="VARCHAR"/>
         <result property="minSalary" column="MIN_SALARY" jdbcType="DECIMAL"/>
@@ -41,14 +41,38 @@
                 and MAX_SALARY &lt;= #{maxSalary}
             </if>
         </where>
+        order by
+            JOB_ID
+    </select>
+    <select id="selectJobsTips" resultType="com.hand.demo.template_44294.domain.entity.Job">
+        select
+        <include refid="Base_Column_List"/>
+        from jobs
+        <where>
+            <if test="jobId!=null and jobId!=''">
+                and JOB_ID LIKE CONCAT(#{jobId},'%')
+            </if>
+            <if test="jobTitle!=null and jobTitle!=''">
+                and JOB_TITLE LIKE CONCAT(#{jobTitle},'%')
+            </if>
+            <if test="minSalary!=null">
+                and MIN_SALARY >= #{minSalary}
+            </if>
+            <if test="maxSalary!=null">
+                and MAX_SALARY &lt;= #{maxSalary}
+            </if>
+        </where>
+        order by
+        JOB_ID
+        limit 5
     </select>
 
     <insert id="insertBatchJobs" parameterType="list">
         insert into
-            jobs(JOB_ID,JOB_TITLE,MIN_SALARY,MAX_SALARY)
+        jobs(JOB_ID,JOB_TITLE,MIN_SALARY,MAX_SALARY)
         values
-        <foreach collection="jobsList" item="jobs" separator=",">
-            (#{jobs.jobId},#{jobs.jobTitle},#{jobs.minSalary},#{jobs.maxSalary})
+        <foreach collection="jobList" item="job" separator=",">
+            (#{job.jobId},#{job.jobTitle},#{job.minSalary},#{job.maxSalary})
         </foreach>
     </insert>
 

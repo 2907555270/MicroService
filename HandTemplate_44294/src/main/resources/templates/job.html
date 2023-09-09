@@ -14,9 +14,14 @@
 <div id="app">
     <h1>Query Job Info</h1>
     <!-- 搜索框 -->
+    <!-- <el-input v-model="searchCondition.jobId" placeholder="jobId" ></el-input> -->
     <el-form :inline="true" :model="searchCondition" class="demo-form-inline" size="small">
         <el-form-item label="id">
-            <el-input v-model="searchCondition.jobId" placeholder="jobId"></el-input>
+            <el-autocomplete
+                    v-model="searchCondition.jobId"
+                    :fetch-suggestions="searchTips"
+                    placeholder="input jobId"
+            ></el-autocomplete>
         </el-form-item>
         <el-form-item label="Title">
             <el-input v-model="searchCondition.jobTitle" placeholder="title"></el-input>
@@ -35,32 +40,30 @@
     </el-form>
 
     <!-- 表格1 -->
-    <template>
-        <el-table
-                :data="jobs"
-                height="250"
-                border
-                style="width: 100%">
-            <el-table-column
-                    prop="jobId"
-                    label="ID"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="jobTitle"
-                    label="TITLE"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="maxSalary"
-                    label="MAX_SALARY">
-            </el-table-column>
-            <el-table-column
-                    prop="minSalary"
-                    label="MIN_SALARY">
-            </el-table-column>
-        </el-table>
-    </template>
+    <el-table
+            :data="job"
+            height="250"
+            border
+            style="width: 100%">
+        <el-table-column
+                prop="jobId"
+                label="ID"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="jobTitle"
+                label="TITLE"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="maxSalary"
+                label="MAX_SALARY">
+        </el-table-column>
+        <el-table-column
+                prop="minSalary"
+                label="MIN_SALARY">
+        </el-table-column>
+    </el-table>
 </div>
 
 
@@ -83,7 +86,7 @@
                 maxSalary: ""
             },
             // 返回的工作信息
-            jobs: [[${jobList}]]
+            job: [[${jobList}]]
         },
         created() {
             this.queryByCondition()
@@ -93,18 +96,41 @@
             queryByCondition() {
                 axios({
                     method: 'post',
-                    url: 'http://localhost:8082/jobs/list',
+                    url: 'http://localhost:8082/job/list',
                     data: this.searchCondition
                 }).then(res => {
                     let data = res.data
                     if (data.flag) {
                         this.$message.success("查询成功")
-                        this.jobs = data.data
-                        document.getElementById("table2").innerHTML = ""
+                        this.job = data.data
                     } else {
                         this.$message.error(data.msg)
                     }
                 })
+            },
+            // 输入提示
+            searchTips(queryString, cb) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8082/job/tips",
+                    data: this.searchCondition
+                }).then(res => {
+                    let data = res.data
+                    if (data.flag) {
+                        let results = []
+                        for (let i = 0; i < data.data.length; i++) {
+                            results.push(data.data[i].jobId)
+                        }
+                        console.log(results)
+                        cb(results)
+                    } else {
+                        this.$message.error(data.msg)
+                    }
+                })
+            },
+            // 选择提示内容
+            handleSelect(item) {
+                console.log(item)
             },
             // 重置表单
             resetForm() {
@@ -115,19 +141,5 @@
     })
 </script>
 <style>
-    tr {
-        border: 2px solid;
-        background-color: beige;
-    }
-
-    td {
-        border: 2px solid;
-    }
-
-    th {
-        font-size: large;
-        color: black;
-        font-weight: bolder;
-    }
 </style>
 </html>

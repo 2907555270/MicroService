@@ -1,6 +1,6 @@
 package com.hand.demo.template_44294.api.controller.v1.responseBody;
 
-import com.hand.demo.template_44294.app.service.DepartmentsService;
+import com.hand.demo.template_44294.app.service.DepartmentService;
 import com.hand.demo.template_44294.domain.vo.DepartmentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dep")
 public class DepartmentController {
     @Autowired
-    private DepartmentsService departmentsService;
+    private DepartmentService departmentService;
 
     /**
      * 查询指定部门的所有员工信息
@@ -27,7 +27,7 @@ public class DepartmentController {
      */
     @GetMapping("/info/{depId}")
     public Rs getDepWithEmployees(@PathVariable Integer depId) {
-        DepartmentVo departmentVo = departmentsService.queryDepartmentWithEmpByDip(depId);
+        DepartmentVo departmentVo = departmentService.queryDepartmentWithEmpByDip(depId);
         return Rs.success(null, departmentVo);
     }
 
