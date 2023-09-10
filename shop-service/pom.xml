@@ -18,6 +18,7 @@
         <module>shop-service-product</module>
         <module>shop-service-user</module>
         <module>shop-service-common</module>
+        <module>shop-service-order-rest-hystrix</module>
     </modules>
 
     <dependencyManagement>

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: shop-service-order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.202:3306/hm_shop
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
+
+server:
+  port: 10011
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+#    prefer-ip-address: true
+
+feign:
+  client:
+    config:
+      shop-service-product:
+        connect-timeout: 5000
+        read-timeout: 5000
+        logger-level: full
+        error-decoder: com.hand.demo.order.infra.feign.decoder.SimpleErrorDecoder
+        request-interceptors:
+          - com.hand.demo.order.infra.feign.interceptor.SimpleRequestInterceptor

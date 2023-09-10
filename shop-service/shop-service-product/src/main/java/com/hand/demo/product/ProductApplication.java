@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
  * @author EMP_44294 2023/09/09 11:33
  */
 @EnableEurekaClient
-@EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = "com.hand.demo.product")
 @EntityScan(basePackages = "com.hand.demo.common.entity")
 public class ProductApplication {

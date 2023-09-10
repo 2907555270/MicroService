@@ -11,7 +11,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  *
  * @author EMP_44294 2023/09/09 12:30
  */
-@EnableDiscoveryClient
 @EnableEurekaClient
 @EntityScan(basePackages = "com.hand.demo.common.entity")
 @SpringBootApplication(scanBasePackages = "com.hand.demo.user")
