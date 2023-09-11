@@ -1,4 +1,4 @@
-package com.hand.demo.customer.myRule;
+package com.hand.demo.customer.infra.myRule;
 
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;

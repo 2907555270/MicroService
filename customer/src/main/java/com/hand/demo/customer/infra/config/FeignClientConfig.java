@@ -1,4 +1,4 @@
-package com.hand.demo.customer.feign.config;
+package com.hand.demo.customer.infra.config;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

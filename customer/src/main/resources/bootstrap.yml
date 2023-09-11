@@ -3,6 +3,13 @@ server:
 spring:
   application:
     name: customer
+  cloud:
+    config:
+      label: master
+      name: config
+      profile: dev
+      uri: http://localhost:10087
+
 eureka:
   instance:
     hostname: localhost
@@ -11,12 +18,8 @@ eureka:
     service-url:
       defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
     fetch-registry: true
-    register-with-eureka: false
+    register-with-eureka: true
 
-ribbon:
-  ReadTimeout: 6000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间
-  ConnectionTimeout: 6000 #建立连接后，服务器读取到可用资源的时间
-
-logging:
-  level:
-    com.hand.demo.customer.feign.client: debug
+feign:
+  hystrix:
+    enabled: true

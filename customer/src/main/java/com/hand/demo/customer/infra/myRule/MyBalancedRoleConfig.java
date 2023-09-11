@@ -1,4 +1,4 @@
-package com.hand.demo.customer.myRule;
+package com.hand.demo.customer.infra.myRule;
 
 import com.netflix.loadbalancer.IRule;
 import org.springframework.context.annotation.Bean;

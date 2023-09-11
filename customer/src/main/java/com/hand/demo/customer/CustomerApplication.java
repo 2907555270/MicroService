@@ -1,9 +1,11 @@
 package com.hand.demo.customer;
 
-import com.hand.demo.customer.myRule.MyBalancedRoleConfig;
+import com.hand.demo.customer.infra.myRule.MyBalancedRoleConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +19,8 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @RibbonClient(name = "producer",configuration = MyBalancedRoleConfig.class)
 @EnableFeignClients(basePackages = "com.hand.demo.customer.feign")
+@EnableHystrix
+@EnableHystrixDashboard
 @SpringBootApplication
 public class CustomerApplication {
     public static void main(String[] args) {

@@ -1,0 +1,40 @@
+# 客户端超时时间
+ribbon:
+  ReadTimeout: 10000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间
+  ConnectionTimeout: 10000 #建立连接后，服务器读取到可用资源的时间
+
+# 请求超时时间
+# 全局：使用全局方法进行回退
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 7000 # 设置超时时间为1秒
+    # 具体方法：
+    ProducerFeignClient#getTimeout(Integer):
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+  dashboard:
+    proxy-stream-allow-list:
+      - "localhost"
+
+logging:
+  level:
+    com.hand.demo.customer.feign.client: debug
+
+
+config:
+  name: old
+  info: old
+  version: old
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

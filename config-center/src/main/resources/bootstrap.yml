@@ -1,0 +1,28 @@
+server:
+  port: 10087
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/2907555270/cloud-config.git
+          search-paths:
+            - cloud-config
+          force-pull: true
+          proxy:
+            https:
+              host: localhost
+              port: 7890
+      label: master
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}

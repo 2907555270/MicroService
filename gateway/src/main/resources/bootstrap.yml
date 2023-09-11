@@ -1,0 +1,27 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      routes:
+        # 隐藏网关的ip,只暴露API
+        - id: customer_routh # 路由id，没有规则，但唯一
+          uri: lb://customer
+          predicates:
+            - Path=/customer/**
+            - Method=GET # 只能Get请求才能访问
+#          filters:
+#            - PrefixPath=/customer
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: gateway-server:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+
+
