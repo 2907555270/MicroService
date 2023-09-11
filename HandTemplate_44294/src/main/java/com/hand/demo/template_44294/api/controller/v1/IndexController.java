@@ -37,4 +37,12 @@ public class IndexController {
         return "job";
     }
 
+    /**
+     * 进入学生成绩管理界面
+     */
+    @GetMapping("/student/info")
+    public String showStudentInfoPage(){
+        return "student/info";
+    }
+
 }

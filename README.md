@@ -60,19 +60,24 @@
 ![img_6.png](source/img_6.png)
 
 ### 完成WebPage编写
-<code>多条件查询和分数录入参数传递类似，这里采用了查询，就没有做录入分数了</code>
 * 首页
 
 ![img_1.png](source/img_1.png)
 * ElementUI + Vue + Axios异步获取数据
 
+![img_3.png](source/img_9_11_3.png)
 ![img_2.png](source/img_2.png)
 * 多条件查询
 
+![img.png](source/img_9_11.png)
+![img_1.png](source/img_9_11_1.png)
 ![img_3.png](source/img_3.png)
 * 搜索提示（前端提示框显示不出来）
 
 ![img.png](source/img_input.png)
+* 成绩修改
+
+![img_2.png](source/img_9_11_2.png)
 
 * 原生HTML + Form + ModelAndView刷新页面获取数据
     * ModelAndView方式中采用Thymeleaf传递参数

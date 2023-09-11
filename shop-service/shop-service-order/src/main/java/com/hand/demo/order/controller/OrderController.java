@@ -28,12 +28,14 @@ public class OrderController {
     @Autowired
     private ProductFeignClient productFeignClient;
 
-    @GetMapping("/{id}")
-    public String order(@PathVariable Integer id) {
-        Product product = productFeignClient.findById(id);
-        System.out.println(product);
-        assert product != null;
-        return product.getProductDesc();
+    @GetMapping("/product/feign/{id}")
+    public Product orderFeign(@PathVariable Long id) {
+        return productFeignClient.findById(id);
+    }
+
+    @GetMapping("/product/rest/{id}")
+    public Product orderRest(@PathVariable Long id) {
+        return restTemplate.getForObject("http://shop-service-product/product/" + id, Product.class);
     }
 
     // @GetMapping("/{id}")

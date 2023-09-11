@@ -10,6 +10,4 @@
     </parent>
 
     <artifactId>shop-service-common</artifactId>
-    <dependencies>
-    </dependencies>
 </project>

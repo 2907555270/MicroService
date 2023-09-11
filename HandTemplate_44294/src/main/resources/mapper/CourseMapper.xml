@@ -38,6 +38,15 @@
         where id=#{id}
     </update>
 
+    <update id="updateByCourseScore" parameterType="com.hand.demo.template_44294.domain.vo.CourseVo">
+        update
+            grade g
+        set
+            g.score = #{score}
+        where
+            g.course_id = #{courseId}
+    </update>
+
     <delete id="removeById">
         delete from course where id=#{id}
     </delete>
@@ -47,6 +56,14 @@
         <include refid="Base_Column_List"/>
         from
         course
+    </select>
+    <select id="selectCourseName" resultType="java.lang.String">
+        select
+            c.name
+        from
+            course c
+        where
+            c.name like concat(#{name},'%')
     </select>
 
 

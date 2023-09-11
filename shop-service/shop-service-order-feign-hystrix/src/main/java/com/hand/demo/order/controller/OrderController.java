@@ -3,9 +3,7 @@ package com.hand.demo.order.controller;
 import com.hand.demo.common.entity.Product;
 import com.hand.demo.order.infra.feign.client.ProductFeignClient;
 import com.hand.demo.order.service.OrderService;
-import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +28,17 @@ public class OrderController {
     @Autowired
     private ProductFeignClient productFeignClient;
 
+    // @HystrixCommand(fallbackMethod = "orderFallBack")
     @GetMapping("/product/{id}")
-    public Product order(@PathVariable Integer id) {
+    public Product order(@PathVariable Long id) {
         return productFeignClient.findById(id);
+    }
+
+    public Product orderFallBack(Long id){
+        Product product = new Product();
+        product.setId(-1L);
+        product.setProductDesc("熔断");
+        return product;
     }
 
     // @GetMapping("/{id}")

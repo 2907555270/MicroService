@@ -38,7 +38,7 @@ spring:
       on-profile: 7002
 eureka:
   instance:
-    hostname: eureka${server.port}
+    hostname: eureka${server.port}:${server.port}
   client:
     service-url:
       defaultZone: http://eureka7001:7001/eureka,http://eureka7003:7003/eureka
@@ -52,7 +52,7 @@ spring:
       on-profile: 7003
 eureka:
   instance:
-    hostname: eureka${server.port}
+    hostname: eureka${server.port}:${server.port}
   client:
     service-url:
       defaultZone: http://eureka7001:7001/eureka,http://eureka7002:7002/eureka

@@ -19,6 +19,7 @@
         <module>shop-service-user</module>
         <module>shop-service-common</module>
         <module>shop-service-order-rest-hystrix</module>
+        <module>shop-service-order-feign-hystrix</module>
     </modules>
 
     <dependencyManagement>

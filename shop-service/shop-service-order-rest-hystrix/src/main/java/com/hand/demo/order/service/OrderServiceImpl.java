@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order findById(Long id) {
-        return orderDao.getById(id);
+        return orderDao.getReferenceById(id);
     }
 
     @Override

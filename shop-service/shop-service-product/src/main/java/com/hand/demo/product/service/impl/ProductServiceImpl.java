@@ -1,8 +1,8 @@
 package com.hand.demo.product.service.impl;
 
+import com.hand.demo.common.entity.Product;
 import com.hand.demo.product.infra.dao.ProductDao;
 import com.hand.demo.product.service.ProductService;
-import com.hand.demo.common.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -15,5 +15,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface ProductFeignClient {
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
-    Product findById(@PathVariable("id") Integer id);
+    Product findById(@PathVariable("id") Long id);
 }

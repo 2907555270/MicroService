@@ -2,6 +2,7 @@ package com.hand.demo.template_44294.app.service.impl;
 
 import com.hand.demo.template_44294.app.service.CourseService;
 import com.hand.demo.template_44294.domain.entity.Course;
+import com.hand.demo.template_44294.domain.vo.CourseVo;
 import com.hand.demo.template_44294.infra.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,26 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> selectAll() {
         return courseMapper.selectAll();
+    }
+
+    /**
+     * 根据输入查询课程名字
+     *
+     * @param name 输入内容
+     * @return 匹配到的课程名字
+     */
+    @Override
+    public List<String> queryCourseName(String name) {
+        return courseMapper.selectCourseName(name);
+    }
+
+    /**
+     * 修改学生成绩信息
+     *
+     * @param courseVo 成绩信息
+     */
+    @Override
+    public void updateStudentScore(CourseVo courseVo) {
+        courseMapper.updateByCourseScore(courseVo);
     }
 }

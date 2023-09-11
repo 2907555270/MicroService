@@ -21,8 +21,3 @@ eureka:
       defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
   instance:
     instance-id: ${spring.application.name}:${server.port}
-
-# 配置负载均衡策略
-shop-service-product:
-  ribbon:
-    NFLoadBalancerClassName: com.

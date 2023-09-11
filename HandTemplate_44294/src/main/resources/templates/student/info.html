@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--
+  description  
+  @author EMP 2023/09/11 7:23 
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Info</title>
+    <!-- 引入 Element UI 的 CSS 和 JavaScript 文件 -->  <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <h1>Query Student Grade Info</h1>
+    <!-- 搜索框 -->
+    <!-- <el-input v-model="searchCondition.jobId" placeholder="jobId" ></el-input> -->
+    <el-form :inline="true" :model="searchCondition" class="demo-form-inline" size="small">
+        <el-form-item label="studentName">
+            <el-autocomplete
+                    v-model="searchCondition.studentName"
+                    :fetch-suggestions="searchTipsByStudentName"
+                    placeholder="studentName"
+            ></el-autocomplete>
+        </el-form-item>
+        <el-form-item label="courseName">
+            <el-autocomplete
+                    v-model="searchCondition.courseName"
+                    :fetch-suggestions="searchTipsByCourseName"
+                    placeholder="courseName"
+            ></el-autocomplete>
+        </el-form-item>
+        <el-form-item>
+            <!-- <el-button type="primary" @click="queryByCondition(false)">同步查询</el-button> -->
+            <el-button type="primary" @click="queryByCondition">查询</el-button>
+            <el-button @click="resetForm">reset</el-button>
+        </el-form-item>
+    </el-form>
+
+    <el-collapse v-model="studentInfo">
+        <el-collapse-item v-for="(student,index) in studentInfo" :key="index" :title="student.studentName">
+            <el-table
+                    :data="student.courseVos"
+                    height="250"
+                    border
+                    style="width: 100%">
+                <el-table-column
+                        prop="courseName"
+                        label="courseName"
+                        width="300">
+                </el-table-column>
+                <el-table-column
+                        prop="score"
+                        label="score"
+                        width="300">
+                </el-table-column>
+                <el-table-column
+                        prop="teacherName"
+                        label="teacherName"
+                        width="300">
+                </el-table-column>
+                <el-table-column
+                        fixed="right"
+                        label="Operation"
+                        width="300">
+                    <template slot-scope="scope">
+                        <el-button @click="handleOpen(scope.row)" type="primary" style="margin-left: 16px;">
+                            Edit
+                        </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-collapse-item>
+
+        <!-- 修改窗口 -->
+        <el-drawer
+                title="Update Student Score"
+                :visible.sync="drawer" size="50%">
+            <el-form :model="updateForm">
+                <el-form-item label="courseName" label-width="200px">
+                    <el-input v-model="updateForm.courseName" style="width: 80%"></el-input>
+                </el-form-item>
+                <el-form-item label="score" label-width="200px">
+                    <el-input v-model="updateForm.score" style="width: 80%"></el-input>
+                </el-form-item>
+                <el-form-item label-width="200px">
+                    <el-button type="primary" @click="submitUpdate">Confirm</el-button>
+                </el-form-item>
+            </el-form>
+        </el-drawer>
+    </el-collapse>
+</div>
+
+
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<!-- import axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            // 弹窗
+            drawer: false,
+            // 搜索条件
+            searchCondition: {
+                studentName: "",
+                courseName: ""
+            },
+            // 修改的信息
+            updateForm:{},
+            // 返回的工作信息
+            studentInfo: []
+        },
+        created() {
+            this.initData()
+        },
+        methods: {
+            // 初始化数据
+            initData() {
+                axios({
+                    method: 'get',
+                    url: 'http://localhost:8082/student/list/info',
+                }).then(res => {
+                    let data = res.data
+                    if (data.flag) {
+                        this.studentInfo = data.data
+                    } else {
+                        this.$message.error(data.msg)
+                    }
+                })
+            },
+            // 按条件查询
+            queryByCondition() {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8082/student/search/info',
+                    data: this.searchCondition
+                }).then(res => {
+                    let data = res.data
+                    if (data.flag) {
+                        this.$message.success("查询成功")
+                        this.studentInfo = data.data
+                    } else {
+                        this.$message.error(data.msg)
+                    }
+                })
+            },
+            // 输入提示
+            searchTipsByStudentName(queryString, cb) {
+                axios({
+                    method: "get",
+                    url: "http://localhost:8082/student/search/studentName/" + queryString,
+                }).then(res => {
+                    let data = res.data
+                    if (data.flag) {
+                        cb(data.data)
+                    } else {
+                        this.$message.error(data.msg)
+                    }
+                })
+            },
+            searchTipsByCourseName(queryString, cb) {
+                axios({
+                    method: "get",
+                    url: "http://localhost:8082/student/search/courseName/" + queryString,
+                }).then(res => {
+                    let data = res.data
+                    if (data.flag) {
+                        cb(data.data)
+                    } else {
+                        this.$message.error(data.msg)
+                    }
+                })
+            },
+            //
+            handleOpen(row){
+                this.updateForm = row
+                this.drawer = true
+            },
+            submitUpdate(){
+                axios({
+                    method: "put",
+                    url: "http://localhost:8082/course/score",
+                    data: this.updateForm
+                }).then(res => {
+                    let data = res.data
+                    if (data.flag) {
+                        this.$message.success("修改成功")
+                        this.drawer = false
+                        this.queryByCondition()
+                    } else {
+                        this.$message.error(data.msg)
+                    }
+                })
+            },
+            // 选择提示内容
+            handleSelect(item) {
+                console.log(item)
+            },
+            // 重置表单
+            resetForm() {
+                this.searchCondition = {}
+                this.queryByCondition()
+            }
+        }
+    })
+</script>
+</body>
+</html>

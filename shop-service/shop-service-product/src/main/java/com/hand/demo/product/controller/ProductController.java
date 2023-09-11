@@ -1,7 +1,7 @@
 package com.hand.demo.product.controller;
 
-import com.hand.demo.product.service.ProductService;
 import com.hand.demo.common.entity.Product;
+import com.hand.demo.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.DeleteMapping;

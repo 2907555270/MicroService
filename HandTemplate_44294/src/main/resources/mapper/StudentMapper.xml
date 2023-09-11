@@ -10,7 +10,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name
+        id
+        ,name
     </sql>
 
     <insert id="insertBatch" useGeneratedKeys="true">
@@ -33,17 +34,15 @@
 
     <delete id="removeById">
         delete
-        from
-            student
-        where
-            id = #{id}
+        from student
+        where id = #{id}
     </delete>
 
     <select id="selectAll" resultType="com.hand.demo.template_44294.domain.entity.Student">
         select
-            <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List"/>
         from
-            student
+        student
     </select>
 
     <resultMap id="stuWithCourseAndScore" type="com.hand.demo.template_44294.domain.vo.StudentVo">
@@ -59,30 +58,75 @@
     </resultMap>
     <select id="selectStuWithCourseAndScore" resultMap="stuWithCourseAndScore">
         select sc.student_id,
-               s.name as 'student_name',
-               sc.course_id,
-               c.name as 'course_name',
-               g.score,
-               t.id   as 'teacher_id',
-               t.name as 'teacher_name'
+               s.name as 'student_name', sc.course_id,
+               c.name as 'course_name', g.score,
+               t.id as 'teacher_id', t.name as 'teacher_name'
         from student_course sc
-        left join
-            student s
-            on
-            sc.student_id = s.id
-        left join
-            course c
-            on
-            sc.course_id = c.id
-        left join
-            grade g
-            on
-            g.course_id = sc.course_id
-            and
-            g.student_id = sc.student_id
-        left join
-            teacher t
-            on
-            t.id = c.teacher_id;
+                 left join
+             student s
+             on
+                 sc.student_id = s.id
+                 left join
+             course c
+             on
+                 sc.course_id = c.id
+                 left join
+             grade g
+             on
+                         g.course_id = sc.course_id
+                     and
+                         g.student_id = sc.student_id
+                 left join
+             teacher t
+             on
+                 t.id = c.teacher_id;
+    </select>
+
+    <select id="selectStudentNameByName" resultType="java.lang.String">
+        select s.name
+        from student s
+        where s.name like concat(#{name}, '%') limit 5
+    </select>
+
+    <select id="selectCourseNameByName" resultType="java.lang.String">
+        select c.name
+        from course c
+        where c.name like concat(#{name}, '%') limit 5
+    </select>
+
+    <select id="selectStuInfoByCondition"
+            parameterType="com.hand.demo.template_44294.api.controller.v1.dto.StudentCourseDto"
+            resultMap="stuWithCourseAndScore">
+        select sc.student_id,
+               s.name as 'student_name', sc.course_id,
+               c.name as 'course_name', g.score,
+               t.id as 'teacher_id', t.name as 'teacher_name'
+        from student_course sc
+                 left join
+             student s
+             on
+                 sc.student_id = s.id
+                 left join
+             course c
+             on
+                 sc.course_id = c.id
+                 left join
+             grade g
+             on
+                         g.course_id = sc.course_id
+                     and
+                         g.student_id = sc.student_id
+                 left join
+             teacher t
+             on
+                 t.id = c.teacher_id
+        <where>
+            <if test="studentName!=null">
+                and s.name like concat(#{studentName},'%')
+            </if>
+            <if test="courseName!=null">
+                and c.name like concat(#{courseName},'%')
+            </if>
+        </where>
     </select>
 </mapper>
