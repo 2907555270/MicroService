@@ -108,10 +108,10 @@ public IRule myRule() {
 ```
 * 定制负载均衡策略
   * 继承AbstractLoadBalancerRule
-  * 重写choose方法
+  * 重写choose方法:每个服务访问三次，然后轮询切换到其他服务
   * 定制负载均衡配置类，将自定义负载均衡策略注入IOC容器
   * 启动类@RibbonClient(name={application.name},configuration=MyRibbon.class)
-
+![img_5.png](img_5.png)
 ### 声明式服务调用(Feign-->OpenFeign->支持Spring MVC注解)
 #### Feign Vs OpenFeign
 * 相同
@@ -133,5 +133,16 @@ public IRule myRule() {
     </dependency>
 ```
 * 创建FeignClient接口 + 定义远程调用的url和参数(和Controller相反)
-  * @FeignClient value属性为远程服务的spring.application.name
-* 
+  * @FeignClients value属性为远程服务的spring.application.name
+  * 启用FeignClient之后，之前的RestTemplate似乎失效了：UnknownHostException
+#### 配置
+* Feign默认1s超时报错
+  * 修改配置
+``` yml
+ribbon:
+        ReadTimeout: 6000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间
+        ConnectionTimeout: 6000 #建立连接后，服务器读取到可用资源的时间
+```
+* Feign日志配置
+
+### Hystrix

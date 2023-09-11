@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * description
  *
@@ -17,6 +19,11 @@ public class produceController {
 
     @GetMapping("/info")
     public String info() {
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            System.out.println("测试休眠");
+        }
         return "producer-" + port;
     }
 }

@@ -16,9 +16,9 @@ spring:
     servlet:
       content-type: text/html
     mode: HTML5
-  web:
-    resources:
-      static-locations: classpath:/static/
+
+  resources:
+    static-locations: classpath:/static/
 
 # mybatis
 mybatis:

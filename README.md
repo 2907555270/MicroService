@@ -4,6 +4,12 @@
 
 原项目仓库：[HandTemplate仓库地址](https://github.com/2907555270/HandTemplate_44294)
 
+### 版本更换
+| 组件        | 版本          |
+| ----------- | ------------- |
+| SpringBoot  | 2.3.6.RELEASE |
+| SpringCloud | Hoxton.SR12   |
+
 ## 2023-9-9 学习
 ### 负载均衡
 #### 策略

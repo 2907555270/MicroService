@@ -20,12 +20,10 @@ eureka:
 server:
   port: 7001
 spring:
-  config:
-    activate:
-      on-profile: 7001
+  profiles: 7001
 eureka:
   instance:
-    hostname: eureka${server.port}:${server.port}
+    hostname: eureka${server.port}
   client:
     service-url:
       defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka
@@ -34,12 +32,10 @@ eureka:
 server:
   port: 7002
 spring:
-  config:
-    activate:
-      on-profile: 7002
+  profiles: 7002
 eureka:
   instance:
-    hostname: eureka${server.port}:${server.port}
+    hostname: eureka${server.port}
   client:
     service-url:
       defaultZone: http://eureka7001:7001/eureka,http://eureka7003:7003/eureka
@@ -48,12 +44,10 @@ eureka:
 server:
   port: 7003
 spring:
-  config:
-    activate:
-      on-profile: 7003
+  profiles: 7003
 eureka:
   instance:
-    hostname: eureka${server.port}:${server.port}
+    hostname: eureka${server.port}
   client:
     service-url:
       defaultZone: http://eureka7001:7001/eureka,http://eureka7002:7002/eureka
