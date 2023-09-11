@@ -53,14 +53,15 @@
             <result property="courseName" column="course_name" javaType="string" jdbcType="VARCHAR"/>
             <result property="teacherId" column="teacher_id" javaType="long" jdbcType="BIGINT"/>
             <result property="teacherName" column="teacher_name" javaType="string" jdbcType="VARCHAR"/>
+            <result property="gradeId" column="grade_id" javaType="long" jdbcType="BIGINT" />
             <result property="score" column="score" javaType="bigDecimal" jdbcType="DECIMAL"/>
         </collection>
     </resultMap>
     <select id="selectStuWithCourseAndScore" resultMap="stuWithCourseAndScore">
-        select sc.student_id,
-               s.name as 'student_name', sc.course_id,
-               c.name as 'course_name', g.score,
-               t.id as 'teacher_id', t.name as 'teacher_name'
+        select sc.student_id
+             , s.name as 'student_name', sc.course_id
+             , c.name as 'course_name', g.id as 'grade_id',g.score
+             , t.id as 'teacher_id', t.name as 'teacher_name'
         from student_course sc
                  left join
              student s
@@ -97,29 +98,29 @@
     <select id="selectStuInfoByCondition"
             parameterType="com.hand.demo.template_44294.api.controller.v1.dto.StudentCourseDto"
             resultMap="stuWithCourseAndScore">
-        select sc.student_id,
-               s.name as 'student_name', sc.course_id,
-               c.name as 'course_name', g.score,
-               t.id as 'teacher_id', t.name as 'teacher_name'
+        select sc.student_id,s.name as 'student_name',
+        sc.course_id,c.name as 'course_name',
+        g.id as 'grade_id',g.score,
+        t.id as 'teacher_id', t.name as 'teacher_name'
         from student_course sc
-                 left join
-             student s
-             on
-                 sc.student_id = s.id
-                 left join
-             course c
-             on
-                 sc.course_id = c.id
-                 left join
-             grade g
-             on
-                         g.course_id = sc.course_id
-                     and
-                         g.student_id = sc.student_id
-                 left join
-             teacher t
-             on
-                 t.id = c.teacher_id
+        left join
+        student s
+        on
+        sc.student_id = s.id
+        left join
+        course c
+        on
+        sc.course_id = c.id
+        left join
+        grade g
+        on
+        g.course_id = sc.course_id
+        and
+        g.student_id = sc.student_id
+        left join
+        teacher t
+        on
+        t.id = c.teacher_id
         <where>
             <if test="studentName!=null">
                 and s.name like concat(#{studentName},'%')

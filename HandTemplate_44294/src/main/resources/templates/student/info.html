@@ -179,12 +179,13 @@
             //
             handleOpen(row){
                 this.updateForm = row
+                this.updateForm.id = row.gradeId
                 this.drawer = true
             },
             submitUpdate(){
                 axios({
                     method: "put",
-                    url: "http://localhost:8082/course/score",
+                    url: "http://localhost:8082/grade",
                     data: this.updateForm
                 }).then(res => {
                     let data = res.data

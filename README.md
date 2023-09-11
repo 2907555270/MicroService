@@ -62,7 +62,7 @@
 ### 完成WebPage编写
 * 首页
 
-![img_1.png](source/img_1.png)
+![img.png](img.png)
 * ElementUI + Vue + Axios异步获取数据
 
 ![img_3.png](source/img_9_11_3.png)

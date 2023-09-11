@@ -45,6 +45,8 @@
             g.score = #{score}
         where
             g.course_id = #{courseId}
+            and
+            g.student_id = #{studentId}
     </update>
 
     <delete id="removeById">

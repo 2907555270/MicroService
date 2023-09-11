@@ -1,0 +1,1062 @@
+{
+	"info": {
+		"_postman_id": "bde0e4d4-3b75-4ca0-8f13-9314d3ab3e82",
+		"name": "hand_study",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20626014",
+		"_collection_link": "https://dark-capsule-150414.postman.co/workspace/My-Workspace~ef1d8f5e-7af2-45be-8cf9-1feed185c2f2/collection/20626014-bde0e4d4-3b75-4ca0-8f13-9314d3ab3e82?action=share&source=collection_link&creator=20626014"
+	},
+	"item": [
+		{
+			"name": "template",
+			"item": [
+				{
+					"name": "mybatisSQL",
+					"item": [
+						{
+							"name": "计算ID：id=id*100",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "正确输出",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/user/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 Sep 2023 04:27:25 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "100"
+								}
+							]
+						},
+						{
+							"name": "转换user输出格式",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"张三\",\r\n    \"sex\": \"男\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "正确输出",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"张三\",\r\n    \"sex\": \"男\",\r\n    \"age\": \"18\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 Sep 2023 04:27:03 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": \"张三,男性,18周岁\"\n}"
+								}
+							]
+						},
+						{
+							"name": "判断是否成年",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"张三\",\r\n    \"sex\": \"男\",\r\n    \"age\": \"18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "转换成功",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"张三\",\r\n    \"sex\": \"男\",\r\n    \"age\": \"18\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 Sep 2023 04:44:18 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": {\n        \"name\": \"张三\",\n        \"age\": 18,\n        \"sex\": \"男\",\n        \"mark\": \"已成年\"\n    }\n}"
+								},
+								{
+									"name": "age属性缺失",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"code\": 200,\r\n    \"msg\": null,\r\n    \"data\": \"张三,男性,18周岁\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 Sep 2023 04:43:32 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"msg\": \"age属性缺失，判断失败\",\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "删除用户",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sex\": \"男\",\r\n    \"age\": \"18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "删除成功",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"张三\",\r\n    \"sex\": \"男\",\r\n    \"age\": \"18\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 Sep 2023 04:35:02 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"msg\": \"张三 信息已删除\",\n    \"data\": null\n}"
+								},
+								{
+									"name": "name属性缺失",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"sex\": \"男\",\r\n    \"age\": \"18\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 Sep 2023 04:43:49 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"msg\": \"name属性缺失，删除失败\",\n    \"data\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "webPage",
+					"item": [
+						{
+							"name": "job",
+							"item": [
+								{
+									"name": "查询所有的工作",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/jobs/list",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"jobs",
+												"list"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "查询成功",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{url}}/jobs/list",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"jobs",
+														"list"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Sep 2023 08:22:18 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": [\n        {\n            \"jobId\": \"AC_ACCOUNT\",\n            \"jobTitle\": \"Public Accountant\",\n            \"minSalary\": 4200,\n            \"maxSalary\": 9000\n        },\n        {\n            \"jobId\": \"AC_MGR\",\n            \"jobTitle\": \"Accounting Manager\",\n            \"minSalary\": 8200,\n            \"maxSalary\": 16000\n        },\n        {\n            \"jobId\": \"AD_ASST\",\n            \"jobTitle\": \"Administration Assistant\",\n            \"minSalary\": 3000,\n            \"maxSalary\": 6000\n        },\n        {\n            \"jobId\": \"AD_PRES\",\n            \"jobTitle\": \"President\",\n            \"minSalary\": 20080,\n            \"maxSalary\": 40000\n        },\n        {\n            \"jobId\": \"AD_VP\",\n            \"jobTitle\": \"Administration Vice President\",\n            \"minSalary\": 15000,\n            \"maxSalary\": 30000\n        },\n        {\n            \"jobId\": \"FI_ACCOUNT\",\n            \"jobTitle\": \"Accountant\",\n            \"minSalary\": 4200,\n            \"maxSalary\": 9000\n        },\n        {\n            \"jobId\": \"FI_MGR\",\n            \"jobTitle\": \"Finance Manager\",\n            \"minSalary\": 8200,\n            \"maxSalary\": 16000\n        },\n        {\n            \"jobId\": \"HR_REP\",\n            \"jobTitle\": \"Human Resources Representative\",\n            \"minSalary\": 4000,\n            \"maxSalary\": 9000\n        },\n        {\n            \"jobId\": \"IT_PROG\",\n            \"jobTitle\": \"Programmer\",\n            \"minSalary\": 4000,\n            \"maxSalary\": 10000\n        },\n        {\n            \"jobId\": \"MK_MAN\",\n            \"jobTitle\": \"Marketing Manager\",\n            \"minSalary\": 9000,\n            \"maxSalary\": 15000\n        },\n        {\n            \"jobId\": \"MK_REP\",\n            \"jobTitle\": \"Marketing Representative\",\n            \"minSalary\": 4000,\n            \"maxSalary\": 9000\n        },\n        {\n            \"jobId\": \"PR_REP\",\n            \"jobTitle\": \"Public Relations Representative\",\n            \"minSalary\": 4500,\n            \"maxSalary\": 10500\n        },\n        {\n            \"jobId\": \"PU_CLERK\",\n            \"jobTitle\": \"Purchasing Clerk\",\n            \"minSalary\": 2500,\n            \"maxSalary\": 5500\n        },\n        {\n            \"jobId\": \"PU_MAN\",\n            \"jobTitle\": \"Purchasing Manager\",\n            \"minSalary\": 8000,\n            \"maxSalary\": 15000\n        },\n        {\n            \"jobId\": \"SA_MAN\",\n            \"jobTitle\": \"Sales Manager\",\n            \"minSalary\": 10000,\n            \"maxSalary\": 20080\n        },\n        {\n            \"jobId\": \"SA_REP\",\n            \"jobTitle\": \"Sales Representative\",\n            \"minSalary\": 6000,\n            \"maxSalary\": 12008\n        },\n        {\n            \"jobId\": \"SH_CLERK\",\n            \"jobTitle\": \"Shipping Clerk\",\n            \"minSalary\": 2500,\n            \"maxSalary\": 5500\n        },\n        {\n            \"jobId\": \"ST_CLERK\",\n            \"jobTitle\": \"Stock Clerk\",\n            \"minSalary\": 2008,\n            \"maxSalary\": 5000\n        },\n        {\n            \"jobId\": \"ST_MAN\",\n            \"jobTitle\": \"Stock Manager\",\n            \"minSalary\": 5500,\n            \"maxSalary\": 8500\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "动态条件查询工作",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"jobTitle\":\"Sales\",\r\n    \"minSalary\": 8000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/jobs/list",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"jobs",
+												"list"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "JobTitle以Sales开头",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"jobTitle\":\"Sales\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/jobs/list",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"jobs",
+														"list"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Sep 2023 08:24:05 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": [\n        {\n            \"jobId\": \"SA_MAN\",\n            \"jobTitle\": \"Sales Manager\",\n            \"minSalary\": 10000,\n            \"maxSalary\": 20080\n        },\n        {\n            \"jobId\": \"SA_REP\",\n            \"jobTitle\": \"Sales Representative\",\n            \"minSalary\": 6000,\n            \"maxSalary\": 12008\n        }\n    ]\n}"
+										},
+										{
+											"name": "Sales且Salary>=8000",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"jobTitle\":\"Sales\",\r\n    \"minSalary\": 8000\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/jobs/list",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"jobs",
+														"list"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Sep 2023 08:25:05 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": [\n        {\n            \"jobId\": \"SA_MAN\",\n            \"jobTitle\": \"Sales Manager\",\n            \"minSalary\": 10000,\n            \"maxSalary\": 20080\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "查询工作",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    jobTitle:\"Public\"    \r\n}"
+										},
+										"url": {
+											"raw": "{{url}}/model/job/list",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"model",
+												"job",
+												"list"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "（1:n）查询某个部门的所有员工信息",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/dep/info/30",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"dep",
+												"info",
+												"30"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "成功查询",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{url}}/dep/info/30",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"dep",
+														"info",
+														"30"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Sep 2023 12:46:31 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": {\n        \"departmentId\": 30,\n        \"departmentName\": \"Purchasing\",\n        \"employeesList\": [\n            {\n                \"employeeId\": 114,\n                \"firstName\": \"Den\",\n                \"email\": \"DRAPHEAL\",\n                \"phoneNumber\": \"515.127.4561\",\n                \"salary\": 16500\n            },\n            {\n                \"employeeId\": 115,\n                \"firstName\": \"Alexander\",\n                \"email\": \"AKHOO\",\n                \"phoneNumber\": \"515.127.4562\",\n                \"salary\": 8921.15\n            },\n            {\n                \"employeeId\": 116,\n                \"firstName\": \"Shelli\",\n                \"email\": \"SBAIDA\",\n                \"phoneNumber\": \"515.127.4563\",\n                \"salary\": 8921.15\n            },\n            {\n                \"employeeId\": 117,\n                \"firstName\": \"Sigal\",\n                \"email\": \"STOBIAS\",\n                \"phoneNumber\": \"515.127.4564\",\n                \"salary\": 8921.15\n            },\n            {\n                \"employeeId\": 118,\n                \"firstName\": \"Guy\",\n                \"email\": \"GHIMURO\",\n                \"phoneNumber\": \"515.127.4565\",\n                \"salary\": 8921.15\n            },\n            {\n                \"employeeId\": 119,\n                \"firstName\": \"Karen\",\n                \"email\": \"KCOLMENA\",\n                \"phoneNumber\": \"515.127.4566\",\n                \"salary\": 8921.15\n            }\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "(1:1)查询老师的课程信息",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/teacher/info/3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"teacher",
+												"info",
+												"3"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "查询成功",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{url}}/teacher/info/3",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"teacher",
+														"info",
+														"3"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Sep 2023 12:54:22 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": {\n        \"teacherId\": 3,\n        \"teacherName\": \"test_2\",\n        \"courseId\": 4,\n        \"courseName\": \"test_3\"\n    }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "student",
+							"item": [
+								{
+									"name": "（n:m）查询所有学生的成绩单",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/student/list/info",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"student",
+												"list",
+												"info"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "查询成功",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{url}}/student/list/info",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"student",
+														"list",
+														"info"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Sep 2023 12:48:27 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"msg\": null,\n    \"data\": [\n        {\n            \"studentId\": 7,\n            \"studentName\": \"test_6\",\n            \"courseVos\": [\n                {\n                    \"courseId\": 2,\n                    \"courseName\": \"test_1\",\n                    \"score\": 20,\n                    \"teacherId\": 1,\n                    \"teacherName\": \"test_0\"\n                },\n                {\n                    \"courseId\": 5,\n                    \"courseName\": \"test_4\",\n                    \"score\": 5,\n                    \"teacherId\": 4,\n                    \"teacherName\": \"test_3\"\n                },\n                {\n                    \"courseId\": 8,\n                    \"courseName\": \"test_7\",\n                    \"score\": 32,\n                    \"teacherId\": 7,\n                    \"teacherName\": \"test_6\"\n                },\n                {\n                    \"courseId\": 11,\n                    \"courseName\": \"test_10\",\n                    \"score\": 99,\n                    \"teacherId\": 10,\n                    \"teacherName\": \"test_9\"\n                }\n            ]\n        },\n        {\n            \"studentId\": 8,\n            \"studentName\": \"test_7\",\n            \"courseVos\": [\n                {\n                    \"courseId\": 3,\n                    \"courseName\": \"test_2\",\n                    \"score\": 34,\n                    \"teacherId\": 2,\n                    \"teacherName\": \"test_1\"\n                },\n                {\n                    \"courseId\": 6,\n                    \"courseName\": \"test_5\",\n                    \"score\": 56,\n                    \"teacherId\": 5,\n                    \"teacherName\": \"test_4\"\n                },\n                {\n                    \"courseId\": 9,\n                    \"courseName\": \"test_8\",\n                    \"score\": 76,\n                    \"teacherId\": 8,\n                    \"teacherName\": \"test_7\"\n                }\n            ]\n        },\n        {\n            \"studentId\": 2,\n            \"studentName\": \"test_1\",\n            \"courseVos\": [\n                {\n                    \"courseId\": 4,\n                    \"courseName\": \"test_3\",\n                    \"score\": 4,\n                    \"teacherId\": 3,\n                    \"teacherName\": \"test_2\"\n                },\n                {\n                    \"courseId\": 7,\n                    \"courseName\": \"test_6\",\n                    \"score\": 98,\n                    \"teacherId\": 6,\n                    \"teacherName\": \"test_5\"\n                },\n                {\n                    \"courseId\": 10,\n                    \"courseName\": \"test_9\",\n                    \"score\": 88,\n                    \"teacherId\": 9,\n                    \"teacherName\": \"test_8\"\n                }\n            ]\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "删除课程信息",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/course/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"course",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "条件查询学生成绩单",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"courseName\":\"test_2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/student/search/info",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"student",
+												"search",
+												"info"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "查询成功",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"courseName\":\"test_2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/student/search/info",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"student",
+														"search",
+														"info"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 11 Sep 2023 01:15:32 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"flag\": true,\n    \"msg\": null,\n    \"data\": [\n        {\n            \"studentId\": 8,\n            \"studentName\": \"test_7\",\n            \"courseVos\": [\n                {\n                    \"courseId\": 3,\n                    \"courseName\": \"test_2\",\n                    \"score\": 34,\n                    \"teacherId\": 2,\n                    \"teacherName\": \"test_1\"\n                }\n            ]\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "修改成绩",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":2,\r\n    \"score\":100\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/grade",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"grade"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "修改成功",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"id\":2,\r\n    \"score\":100\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/grade",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"grade"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 11 Sep 2023 01:31:51 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"code\": 200,\n    \"flag\": true,\n    \"msg\": \"修改成功\",\n    \"data\": null\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:8082",
+			"type": "string"
+		}
+	]
+}

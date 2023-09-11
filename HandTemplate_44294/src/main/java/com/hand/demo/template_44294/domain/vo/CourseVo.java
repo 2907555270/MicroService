@@ -21,6 +21,10 @@ public class CourseVo implements Serializable {
      */
     private String courseName;
     /**
+     * 分数Id
+     */
+    private Long gradeId;
+    /**
      * 课程得分
      */
     private BigDecimal score;
@@ -73,11 +77,20 @@ public class CourseVo implements Serializable {
         this.teacherName = teacherName;
     }
 
+    public Long getGradeId() {
+        return gradeId;
+    }
+
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
+    }
+
     @Override
     public String toString() {
         return "CourseVo{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
+                ", gradeId=" + gradeId +
                 ", score=" + score +
                 ", teacherId=" + teacherId +
                 ", teacherName='" + teacherName + '\'' +
