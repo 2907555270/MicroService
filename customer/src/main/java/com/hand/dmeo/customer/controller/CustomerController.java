@@ -18,6 +18,6 @@ public class CustomerController {
 
     @GetMapping("/info")
     public String getProducerInfo(){
-        return restTemplate.getForObject("http://producer/info",String.class);
+        return restTemplate.getForObject("http://producer"+"/info",String.class);
     }
 }

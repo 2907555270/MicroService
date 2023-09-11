@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author EMP_44294 2023/09/09 16:04
  */
-@FeignClient(name = "shop-service-product")
+@FeignClient(value = "shop-service-product")
 public interface ProductFeignClient {
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)

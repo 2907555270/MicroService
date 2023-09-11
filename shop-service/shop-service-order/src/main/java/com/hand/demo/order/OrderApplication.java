@@ -1,6 +1,5 @@
 package com.hand.demo.order;
 
-import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -28,10 +27,5 @@ public class OrderApplication {
     @LoadBalanced
     public RestTemplate restTemplate(){
         return new RestTemplate();
-    }
-
-    @Bean
-    public RandomRule randomRule(){
-        return new RandomRule();
     }
 }

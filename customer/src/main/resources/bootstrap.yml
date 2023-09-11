@@ -5,10 +5,10 @@ spring:
     name: customer
 eureka:
   instance:
-    hostname: hostname
+    hostname: localhost
     instance-id: ${spring.application.name}-${server.port}
   client:
     service-url:
       defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
     fetch-registry: true
-    register-with-eureka: true
+    register-with-eureka: false
