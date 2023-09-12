@@ -11,7 +11,7 @@
 | SpringCloud | Hoxton.SR12   |
 
 ### 文档索引
-* #### [今日学习笔记](source/notes/STUDY-2023-9-11.md)
+* #### [2023-9-11学习笔记](source/notes/STUDY-2023-9-11.md)
 * #### [2023-9-10前的内容](source/notes/STUDY_PRE.md)
 
 
