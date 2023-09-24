@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @EnableEurekaClient
 @RibbonClient(name = "producer",configuration = MyBalancedRoleConfig.class)
-@EnableFeignClients(basePackages = "com.hand.demo.customer.feign")
+@EnableFeignClients(basePackages = "com.hand.demo.customer.infra.feign")
 @EnableHystrix
 @EnableHystrixDashboard
 @SpringBootApplication

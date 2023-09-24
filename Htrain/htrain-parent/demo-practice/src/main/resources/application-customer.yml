@@ -1,0 +1,24 @@
+spring:
+  redis:
+    password: Hand#2021
+  datasource:
+    password: Q4E%kizUy2#m
+  servlet:
+    multipart:
+      max-file-size: 30MB # 单个文件最大限制
+      max-request-size: 30MB # 上传请求最大限制
+
+customer:
+  message: old
+
+hzero:
+  lov:
+    sql:
+      enabled: true
+  scheduler:
+    auto-register: false # 关闭自动注册
+    executor-code: EMP44294 # 执行器编码
+    upload-log: false # 不自动上传日志
+  import:
+    transaction-control: true
+    batch-size: 3000

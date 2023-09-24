@@ -1,5 +1,7 @@
 package com.hand.demo.template_44294.api.controller.v1.modelAndView;
 
+import java.util.List;
+
 import com.hand.demo.template_44294.app.service.JobService;
 import com.hand.demo.template_44294.domain.entity.Job;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 /**
  * description

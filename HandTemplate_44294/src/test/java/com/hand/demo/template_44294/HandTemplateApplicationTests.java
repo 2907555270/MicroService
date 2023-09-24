@@ -9,5 +9,4 @@ class HandTemplateApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

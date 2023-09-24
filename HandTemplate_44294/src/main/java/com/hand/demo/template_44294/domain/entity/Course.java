@@ -1,5 +1,6 @@
 package com.hand.demo.template_44294.domain.entity;
 
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 
 /**
@@ -10,6 +11,7 @@ public class Course implements Serializable {
 
     private Long id;
 
+    @Email
     private String name;
 
     private Long teacherId;

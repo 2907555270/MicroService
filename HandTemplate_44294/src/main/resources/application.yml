@@ -15,7 +15,7 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
-    mode: HTML5
+    mode: HTML
 
   resources:
     static-locations: classpath:/static/
@@ -26,11 +26,9 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+#  config-location: classpath:mybatis-config.xml
 
 # 日志
-logging:
-  level:
-    com.hand.demo.template_44294: warn
-    mybatis: warn
-
-
+#logging:
+#  level:
+#    root: warn
